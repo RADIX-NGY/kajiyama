@@ -1,0 +1,458 @@
+@charset "Shift_JIS";
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ all
+--------------------------------------------------------------------------------------------------------- */
+* {margin:0px; padding:0px;}
+html {
+	overflow-y: scroll;
+	font-size: 62.5%;
+}
+body {
+	font-family: 'Hiragino Kaku Gothic Pro', 'ヒラギノ角ゴ Pro W3', Meiryo, メイリオ, Osaka, 'MS PGothic', helvetica, arial, sans-serif;;
+	font-size: 14px;
+	font-size: 1.4rem;
+	line-height: 180%;
+	text-size-adjust: 100%;
+	color:#401f35;
+	background: #fff;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ reset
+--------------------------------------------------------------------------------------------------------- */
+/* 見出しタグ*/
+h1, h2, h3, h4, h5, h6 { margin-top: 0px; margin-bottom: 0px;}
+/* ボーダーを余白にふくめる */
+/*h1, h2, h3, h4, h5, h6,
+article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary,
+div, span,
+p,
+ul, ol, li,
+dl, dt, dd,
+table, tr, th, td,
+a, img,
+*:after, *:before { box-sizing: border-box;}*/
+html {
+  box-sizing: border-box;
+  -ms-overflow-style: scrollbar;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+/* テキスト */
+p,
+li,
+dl,
+table { line-break: strict; word-break: break-strict; word-wrap: break-word; margin-top: 0px; margin-bottom: 0px; }
+/* テーブルの中での改行 */
+tr { word-break: break-all; }
+/* 折り返し禁止 */
+.nw { white-space: nowrap;}
+/* 画像のあいだの余白を消す */
+img { vertical-align: bottom;}
+/* ドラッグして選択したときの文字色と文字の背景色*/
+::selection { background: #0165ab; color: #ffffff; }
+::-moz-selection { background: #0165ab; color: #ffffff;}
+/* フォーム */
+textarea { overflow: auto; vertical-align: top; resize: vertical;}
+select option { padding: 0px 5px;}
+form label { cursor: pointer;}
+input:placeholder { color: #999;}
+input:-ms-input-placeholder { color: #999;}
+/* テーブル */
+table { border-collapse: collapse; border-spacing: 0;}
+/* リストタグ */
+ul, ol { margin: 0px; padding: 0px; list-style-type: none;}
+dd { margin-left: 0;}
+/* clearfix */
+.clearfix:after {
+    content:" ";
+    display:block;
+    clear:both;
+}
+/* link */
+a {outline:none;}
+a:link,
+a:visited {
+	color:#fd3489;
+	text-decoration:none;
+}
+a:hover {
+	color:#E5814A;
+	text-decoration:none;
+}
+a:focus{ outline:none;}
+.img-filter a:hover img {
+	opacity:0.8;
+	filter: alpha(opacity=80);
+}
+
+
+main { display: block;}
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ layout
+--------------------------------------------------------------------------------------------------------- */
+.container {
+  min-width: 1170px;
+  max-width: 1170px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.container img {
+	max-width: 100%;
+	height: auto;
+}
+
+.grid-row {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+.no-gutters > .col,
+.no-gutters > [class*="col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col,
+.col-auto, .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm,
+.col-sm-auto, .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12, .col-md,
+.col-md-auto, .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg,
+.col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
+.col-xl-auto {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+.col-1 {
+	-ms-flex: 0 0 8.333333%;
+	flex: 0 0 8.333333%;
+	max-width: 8.333333%;
+}
+.col-2 {
+	-ms-flex: 0 0 16.666667%;
+	flex: 0 0 16.666667%;
+	max-width: 16.666667%;
+}
+.col-3 {
+	-ms-flex: 0 0 25%;
+	flex: 0 0 25%;
+	max-width: 25%;
+}
+.col-4 {
+	-ms-flex: 0 0 33.333333%;
+	flex: 0 0 33.333333%;
+	max-width: 33.333333%;
+}
+.col-5 {
+	-ms-flex: 0 0 41.666667%;
+	flex: 0 0 41.666667%;
+	max-width: 41.666667%;
+}
+.col-6 {
+	-ms-flex: 0 0 50%;
+	flex: 0 0 50%;
+	max-width: 50%;
+}
+.col-7 {
+	-ms-flex: 0 0 58.333333%;
+	flex: 0 0 58.333333%;
+	max-width: 58.333333%;
+}
+.col-8 {
+	-ms-flex: 0 0 66.666667%;
+	flex: 0 0 66.666667%;
+	max-width: 66.666667%;
+}
+.col-9 {
+	-ms-flex: 0 0 75%;
+	flex: 0 0 75%;
+	max-width: 75%;
+}
+.col-10 {
+	-ms-flex: 0 0 83.333333%;
+	flex: 0 0 83.333333%;
+	max-width: 83.333333%;
+}
+.col-11 {
+	-ms-flex: 0 0 91.666667%;
+	flex: 0 0 91.666667%;
+	max-width: 91.666667%;
+}
+.col-12 {
+	-ms-flex: 0 0 100%;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ extension
+--------------------------------------------------------------------------------------------------------- */
+.imglink a:hover img {
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-moz-transition: opacity 1s ease-out;
+	transition: opacity 1s ease-out;
+}
+
+.ptb80 { padding-top: 80px; padding-bottom: 80px;}
+
+.mb5 { margin-bottom: 0.5em;}
+.mb15 { margin-bottom: 1.5em;}
+.mb20 { margin-bottom: 2.0em;}
+.mb30 { margin-bottom: 3.0em;}
+.mb50 { margin-bottom: 5.0em;}
+.mb70 { margin-bottom: 7.0em;}
+
+.align-l { text-align: left !important;}
+.align-c { text-align: center !important;}
+.align-r { text-align: right !important;}
+
+.en { font-family: Arial, Helvetica, "sans-serif";}
+
+.red { color: #ff0000;}
+
+ol.counter {
+  counter-reset: item;
+  list-style-type: none;
+  padding-left: 0;
+}
+ol.counter li {
+  text-indent: -1.3em;
+  padding-left: 1.3em;
+}
+ol.counter li:before {
+  counter-increment: item;
+  content: counter(item)'.';
+  padding-right: .5em;
+}
+
+ul.list-disc {
+	list-style: none;
+	padding:0;
+	margin:0;
+}
+ul.list-disc li { 
+	padding-left: 1em; 
+	text-indent: -.7em;
+}
+ul.list-disc li:before {
+	content: "● ";
+	color: #c15f2a;
+}
+
+/* dl_table
+----------------------------------------------------------*/
+dl.dl_table,
+	.dl_table > dt,
+	.dl_table > dd {
+	box-sizing: border-box;
+	text-align: left;
+}
+dl.dl_table {
+	background: #eee;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-left: 1px solid #ccc;
+}
+.dl_table > dt,
+.dl_table > dd {
+	padding: 15px 15px 0 15px;
+	border-top: 1px solid #ccc;
+}
+.dl_table > dt {
+	background: #eee;
+	font-weight: bold;
+	width: 20%;
+	float: left;
+}
+.dl_table > dd {
+	background: #fff;
+	padding-bottom: 15px;
+	margin-left: 20%;
+	border-left: 1px solid #ccc;
+}
+
+
+/* background color
+----------------------------------------------------------*/
+.bg_pink { background: #f9edf2;}
+
+
+
+/* header
+----------------------------------------------------------*/
+.header .grid-row {
+	position: relative;
+	height: 80px;
+}
+.header .grid-row  h1 {
+	position: absolute;
+	top: 50%;
+	-moz-transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.header_tel {
+	color: #fff;
+	padding: 3px 0;
+	background: #fd3489;
+	border-radius: 0px 0px 10px 10px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+	width: 100%;
+}
+.header_tel li {
+	width: 50%;
+	padding: 13px 0;
+	text-align: center;
+	line-height: 1.2em;
+}
+.header_tel li:first-child { 
+	border-right: #fff solid 1px;
+	font-size: 20px;
+	font-size: 2.0rem;
+	line-height: 22px;
+	text-indent: 14px;
+	font-weight: bold;
+	position: relative;
+}
+.header_tel li:first-child:before {
+	content: '';
+	background: url(../images/header_tel_deco.png) no-repeat;
+	background-size: contain;
+	display: inline-block;
+	width: 14px;
+	height: 22px;
+	position: absolute;
+	left: 25px;
+}
+
+
+/* navigation
+----------------------------------------------------------*/
+.gnav { background: #330f1f;}
+.gnav ul {
+	width: 1140px;
+	margin: 0 auto;
+	height: 80px;
+	padding: 9px 0;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+} 
+.gnav ul li {
+	width: 20%;
+	font-size: 15px;
+	font-size: 1.5rem;
+	text-align: center;
+	line-height: 1.1em;
+	border-right: #fff solid 1px;
+}
+.gnav ul li:first-child {
+	border-left: #fff solid 1px;
+}
+.gnav ul li span {
+	display: block;
+	font-size: 12px;
+	font-size: 1.2rem;
+}
+.gnav ul li a {
+	display: block;
+	width: 100%;
+	padding: 15px 0;
+	color: #fff;
+	position: relative;
+}
+.gnav ul li a::after {
+  position: absolute;
+  bottom: 5px;
+  left: 15%;
+  content: '';
+  width: 70%;
+  height: 2px;
+  background: #fff;
+  transform: scale(0, 1);
+  transform-origin: center top;
+  transition: transform .3s;
+}
+.gnav ul li a:hover::after {
+  transform: scale(1, 1);
+}
+.gnav ul li.current a::before {
+  position: absolute;
+  bottom: 5px;
+  left: 15%;
+  content: '';
+  width: 70%;
+  height: 2px;
+  background: #fff;
+}
+/*a { transition-property: all; transition: 0.1s linear;}*/
+
+/* footer
+----------------------------------------------------------*/
+.footer { background: #330f1f; color: #fff;}
+.footer .container { 
+	background: url(../images/footer_deco.png) no-repeat right bottom; 
+	padding-top: 35px;
+	padding-bottom:30px;
+	font-size: 12px;
+	font-size: 1.2rem;
+	line-height: 1.6em;
+}
+.footer dt { padding-bottom: 23px;}
+.footer ul { padding-top: 10px;}
+.footer ul li { line-height: 1.8em;}
+.footer ul li a { color: #fff;}
+.footer ul li a:hover {
+	opacity: 0.7;
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-moz-transition: opacity 1s ease-out;
+	transition: opacity 1s ease-out;
+}
+.footer ul li i { margin-right: 5px;}
+.copyright { padding-top: 30px;}
+
+/* pagetop
+----------------------------------------------------------*/
+#pagetop {
+	position: fixed;
+	bottom: 15px;
+	right: 15px;
+}
+
+
+/* ---------------------------------------------------------------------------------------------------------
+ print
+--------------------------------------------------------------------------------------------------------- */
+@media print {
+}
