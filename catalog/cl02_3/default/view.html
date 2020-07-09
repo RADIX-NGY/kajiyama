@@ -1,0 +1,251 @@
+<?php
+//viewは既にboxに該当idのデータを意見保持しているので最初にextractします。
+extract($category['CatalogCategory'],EXTR_PREFIX_ALL,'category');
+extract($box['CatalogBox'],EXTR_PREFIX_ALL,'tbl');
+
+//$pageTitle、$metaDescription、$metaKeywordsは予めデザインで指定されている文言に置き換えてください。
+//記入されていない、管理画面から等が記述されている場合はブランクにして下さい。
+if (empty($box['CatalogBox']['page_title'])) {
+  $pageTitle = "物件情報｜".$category_title."｜株式会社かじやま不動産";
+} else {
+  $pageTitle = $box['CatalogBox']['page_title'];
+}
+if (empty($box['CatalogBox']['description'])) {
+  $metaDescription = $category_title."　".$tbl_title."のこだわり物件をご紹介。天白区、日進市の新築・中古・リノベーションのマンション・一戸建て・土地のことならかじやま不動産にお任せください。また、不動産売却・不動産買取をお考えでしたら、ぜひご相談ください。 ";
+} else {
+  $metaDescription = $box['CatalogBox']['description'];
+}
+if (empty($box['CatalogBox']['keywords'])) {
+  $metaKeywords = "愛知県、天白区、日進市、新築、中古、リノベーション、マンション、一戸建て、土地、不動産売却、不動産買取、株式会社かじやま不動産";
+} else {
+  $metaKeywords = $box['CatalogBox']['keywords'];
+}
+?>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="<?php echo $metaDescription?>" />
+<meta name="keywords" content="<?php echo $metaKeywords?>" />
+<meta name="viewport" content="width=1170">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/content.css">
+<link rel="stylesheet" href="css/fontawesome-all.min.css">
+<link rel="stylesheet" href="css/fotorama.css">
+<link rel="stylesheet" href="css/colorbox.css">
+
+<title><?php echo $pageTitle?></title>
+</head>
+
+<body>
+<header class="header">
+	<div class="container">
+		<div class="grid-row">
+			<div class="col-7"><h1><a href="index.html"><img src="images/header_logo.png" width="249" height="43" alt="愛知県の株式会社かじやま不動産は天白区、日進区を中心に新築・中古・リノベーションのマンション・一戸建て・土地を取り扱っております。"></a></h1></div>
+			<div class="col-5">
+				<ul class="header_tel">
+					<li><span data-action="call" data-tel="052-800-2103">052-800-2103</span></li>
+					<li>営業時間 10:00~19:00<br>
+					定休日:水曜日</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+<nav class="gnav">
+	<ul>
+		<li><a href="index.html">ホーム<span class="en">HOME</span></a></li>
+		<li class="current"><a href="list.html">物件情報<span class="en">List</span></a></li>
+		<li><a href="about.html">かじやま不動産について<span class="en">About</span></a></li>
+		<li><a href="company.html">会社概要<span class="en">Company</span></a></li>
+		<li><a href="contact.html">お問い合わせ<span class="en">Contact</span></a></li>
+	</ul>
+</nav>
+
+<main>
+	<div class="hero_title">
+		<h2>物件情報<span class="en">List</span></h2>
+	</div>
+
+	<div class="container ptb80">
+		<div class="grid-row">
+			<div class="col-3">
+				<div class="mb30"><a href="contact.html?id=<?php echo $tbl_id;?>" class="btn_contact">この物件にお問い合わせする</a></div>
+				<h3 class="sub_title01">物件概要</h3>
+				<dl class="list_detail_overview list_detail_overview01">
+					<dt>価格</dt>
+					<dd><?php echo !empty($tbl_text1)? $tbl_text1 : '-'; ?></dd>
+					<dt>号棟/号地/号室</dt>
+					<dd><?php echo !empty($tbl_text3)? $tbl_text3 : '-'; ?></dd>
+					<dt>間取</dt>
+					<dd><?php echo !empty($tbl_text4)? $tbl_text4 : '-'; ?></dd>
+					<dt>広さ</dt>
+					<dd><?php echo !empty($tbl_text5)? $tbl_text5 : '-'; ?></dd>
+				</dl>
+				<dl class="list_detail_overview list_detail_overview02">
+					<dt>アクセス</dt>
+					<dd><?php echo !empty($tbl_text6)? $tbl_text6 : '-'; ?></dd>
+				</dl>
+				<dl class="list_detail_overview list_detail_overview01">
+					<!--dt>敷金/礼金</dt>
+					<dd><?php echo !empty($tbl_text7)? $tbl_text7 : '-'; ?></dd-->
+					<dt>仲介手数料</dt>
+					<dd><?php echo !empty($tbl_text8)? $tbl_text8 : '-'; ?></dd>
+				</dl>
+				<?php if (!empty($tbl_image2)):?>
+				<dl class="list_detail_overview list_detail_overview02">
+					<dt>間取図/区画図</dt>
+					<dd class="layout_img">
+						<a href="<?php echo $this->element('media', array('var' => array('id' => $tbl_image2, 'width' => 600, 'return' => true))); ?>" class="colorbox"><?php echo $this->element('media', array('var'=>array('id'=>$tbl_image2,'maxwidth'=>260,'alt'=>$tbl_image2_alt)));?></a>
+					</dd>
+                                <?php /*        
+					<dd class="layout_img"><a href="images/img12.jpg" class="colorbox"><img src="images/img12.jpg" alt=""></a></dd>
+                                 * 
+                                 */ ?>
+				</dl>
+				<?php endif;?>
+				<dl class="list_detail_overview list_detail_overview02">
+					<dt>備考</dt>
+					<dd><?php echo !empty($tbl_text9)? $tbl_text9 : '-'; ?></dd>
+				</dl>
+				<dl class="list_detail_overview list_detail_overview02">
+					<dt>設備</dt>
+					<dd><?php echo !empty($tbl_text10)? $tbl_text10 : '-'; ?></dd>
+				</dl>
+			</div>
+
+			<div class="col-9">
+				<?php if (!empty($tbl_title)):?>
+				<h3 class="item_title"><?php echo $tbl_title?></h3>
+				<?php endif;?>
+				<dl class="list_detail_overview list_detail_overview01">
+					<dt>住所</dt>
+					<dd><?php echo !empty($tbl_text11)? $tbl_text11 : '-'; ?></dd>
+				</dl>
+				<?php
+			  $count = 0;
+			  $image_ary = array();
+			  for ($i = 3; $i <= 22; $i++) {
+			      if (!empty(${"tbl_image{$i}"})) {
+			            $count++;
+			            $image_ary[$count]['url'] = $this->element('media', array('var' => array('id' => ${"tbl_image{$i}"}, 'width' => 800, 'return' => true)));
+			            $image_ary[$count]['alt'] = ${"tbl_image{$i}_alt"};
+                  $textcnt=$i+10;
+                  $image_ary[$count]['text'] = ${"tbl_text{$textcnt}"};
+
+			      }
+			  }
+
+			  if(!empty($image_ary)):
+			  ?>
+				<div id="fotorama" class="fotorama" data-width="100%" data-height="500" data-loop="true" data-nav="thumbs" data-arrows="true">
+					<?php
+			      for($i=1; $i <= $count; $i++):
+			    ?>
+					<img src="<?php echo $image_ary[$i]['url'];?>" data-caption="<?php echo $image_ary[$i]['text'];?>">
+					<?php endfor; ?>
+				</div><!-- /fotorama -->
+				<?php endif;?>
+				<?php if (!empty($tbl_html1)):?>
+				<div class="mb30"><?php echo $tbl_html1?></div>
+				<?php endif;?>
+				<?php if (!empty($tbl_html2)):?>
+				<h3 class="sub_title01 mb15">マップ</h3>
+				<div class="google-maps mb50">
+					<?php echo $tbl_html2?>
+				</div>
+				<?php endif;?>
+
+
+				<div class="list_detail_btn">
+				<!--prev-next処理-->
+        <ul class="list_detail_btn01">
+          <li class="btn_list"><a href="list.html">一覧</a></li>
+        </ul>
+						<ul class="list_detail_btn02">
+				<?php
+						extract($category['CatalogCategory'],EXTR_PREFIX_ALL,'category');
+						$boxes_sort = $this->requestAction(array('controller' => 'list', 'action' => 'widget','conditions' => array('CatalogCategory.id' => $category_id,'CatalogBox.has_page' => 'Y'),'with_category' => 1,'order' => array('CatalogBox.date1' => 'desc')));
+				//    pr($boxes);
+				?>
+				<?php
+				$prev = NULL;
+				$next = NULL;
+				$now = NULL;
+				foreach ($boxes_sort as $box) {
+						extract($box['CatalogBox'], EXTR_PREFIX_ALL, 'tbl_s');
+				//        変数nowが空なら、現在のループのidと異なるなら、prevを取得する
+						if (empty($now) && ($tbl_id != $tbl_s_id)) {
+								$prev = $tbl_s_id;
+						}
+				//        変数nowに値が入っていて、現在のループのidと異なるなら、nextを取得し、ループを終了
+						if (!empty($now) && ($now != $tbl_s_id)) {
+								$next = $tbl_s_id;
+								break;
+						}
+				//    現在のループのidと現在のアイテムのidが同じなら、nowを取得
+						if ($tbl_s_id == $tbl_id) {
+								$now = $tbl_s_id;
+						}
+				}
+				?>
+							<?php if(!empty($prev) && $prev != $tbl_id): ?>
+									<li class="bnt_prev">
+										<a href="/list/view/<?php echo $prev; ?>">
+											PREV</a>
+									</li>
+							<?php endif; ?>
+
+							<?php if(!empty($next) && $next != $tbl_id): ?>
+								<li class="bnt_next">
+									<a href="/list/view/<?php echo $next; ?>">
+											NEXT </a></li>
+							<?php endif; ?>
+						</ul>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</main>
+
+<footer class="footer">
+	<div class="container">
+		<div class="grid-row">
+			<div class="col-3">
+				<dl>
+					<dt><img src="images/footer_logo.png" width="184" height="32" alt="株式会社かじやま不動産"></dt>
+					<dd>〒468-0032<br>
+					名古屋市天白区山郷町13番地<br>
+					Tel.052-800-2103 / Fax.052-800-2107</dd>
+				</dl>
+			</div>
+			<div class="col-6">
+				<ul>
+					<li><a href="index.html"><i class="fas fa-angle-right"></i>ホーム</a></li>
+					<li><a href="list.html"><i class="fas fa-angle-right"></i>物件情報</a></li>
+					<li><a href="about.html"><i class="fas fa-angle-right"></i>かじやま不動産について</a></li>
+					<li><a href="company.html"><i class="fas fa-angle-right"></i>会社案内</a></li>
+					<li><a href="contact.html"><i class="fas fa-angle-right"></i>お問い合わせ</a></li>
+				</ul>
+			</div>
+			<div class="col-3 align-r"><p class="copyright">&copy;2018  株式会社かじやま不動産</p></div>
+		</div>
+	</div>
+</footer>
+
+<div id="pagetop"><a href="#top"><img src="images/pagetop.png" width="55" height="55" alt="ページトップ"></a></div>
+
+  <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="js/pagetop.js"></script>
+<script src="js/tel.js"></script>
+<script src="js/fotorama.js"></script>
+
+</body>
+</html>

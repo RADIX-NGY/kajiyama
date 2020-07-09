@@ -1,0 +1,253 @@
+<?php
+// $target_id は従来の $parent_id を別の表記にしたものです。$parent_id もそのまま使えます。
+// $target は $category_all[$target_id] を改めて別の変数にしたものです。
+
+//$pageTitle、$metaDescription、$metaKeywordsは予めデザインで指定されている文言に置き換えてください。
+//記入されていない、管理画面から等が記述されている場合はブランクにして下さい。
+if (empty($target['page_title'])) {
+  $pageTitle = "物件情報｜".$target['title']."｜株式会社かじやま不動産<";
+} else {
+  $pageTitle = $target['page_title'];
+}
+if (empty($target['description'])) {
+  $metaDescription = $target['title']."のこだわり物件をご紹介。天白区、日進市の新築・中古・リノベーションのマンション・一戸建て・土地のことならかじやま不動産にお任せください。また、不動産売却・不動産買取をお考えでしたら、ぜひご相談ください。 ";
+} else {
+  $metaDescription = $target['description'];
+}
+if (empty($target['keywords'])) {
+  $metaKeywords = "愛知県、天白区、日進市、新築、中古、リノベーション、マンション、一戸建て、土地、不動産売却、不動産買取、株式会社かじやま不動産";
+} else {
+  $metaKeywords = $target['keywords'];
+}
+?>
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="<?php echo $metaDescription?>" />
+<meta name="keywords" content="<?php echo $metaKeywords?>" />
+<meta name="viewport" content="width=1170">
+<meta name="format-detection" content="telephone=no">
+<link rel="icon" href="favicon.ico" type="image/vnd.microsoft.icon">
+
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/content.css">
+<link rel="stylesheet" href="css/fontawesome-all.min.css">
+<title><?php echo $pageTitle?></title>
+</head>
+
+<body>
+<header class="header">
+	<div class="container">
+		<div class="grid-row">
+			<div class="col-7"><h1><a href="index.html"><img src="images/header_logo.png" width="249" height="43" alt="愛知県の株式会社かじやま不動産は天白区、日進区を中心に新築・中古・リノベーションのマンション・一戸建て・土地を取り扱っております。"></a></h1></div>
+			<div class="col-5">
+				<ul class="header_tel">
+					<li><span data-action="call" data-tel="052-800-2103">052-800-2103</span></li>
+					<li>営業時間 10:00~19:00<br>
+					定休日:水曜日</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</header>
+
+<nav class="gnav">
+	<ul>
+		<li><a href="index.html">ホーム<span class="en">HOME</span></a></li>
+		<li class="current"><a href="list.html">物件情報<span class="en">List</span></a></li>
+		<li><a href="about.html">かじやま不動産について<span class="en">About</span></a></li>
+		<li><a href="company.html">会社概要<span class="en">Company</span></a></li>
+		<li><a href="contact.html">お問い合わせ<span class="en">Contact</span></a></li>
+	</ul>
+</nav>
+
+<main>
+	<div class="hero_title">
+		<h2>物件情報<span class="en">List</span></h2>
+	</div>
+
+	<section class="bg_pink ptb80 list_box">
+		<div class="container">
+			<div class="tab_wrap">
+        <?php
+        $checked ="";
+        if (!isset($this->params['url']['id'])){
+          $checked ="checked";
+        }
+        ?>
+				<input id="tab1" type="radio" name="tab_btn" <?php echo $checked;?>>
+				<?php
+	       $tab_count=2;
+         foreach($category_all as $category_id => $category):
+					$cat_ids[$category_id]=$category_id;
+					$cat_titles[$category_id]=$category['title'];
+          $checked ="";
+          if (isset($this->params['url']['id'])){
+            if ($this->params['url']['id']==$category_id){
+              $checked ="checked";
+            }
+          }
+
+					?>
+				<input id="tab<?php echo $tab_count;?>" type="radio" name="tab_btn" <?php echo $checked;?>>
+				<?php
+        $tab_count++;
+        endforeach;
+        ?>
+
+				<div class="tab_area">
+					<label class="tab1_label" for="tab1">ALL</label>
+					<?php
+          $tab_count=2;
+          foreach($category_all as $category_id => $category):
+            ?>
+					<label class="tab<?php echo $tab_count?>_label" for="tab<?php echo $tab_count?>"><?php echo $category['title'];?></label>
+					<?php
+          $tab_count++;
+          endforeach;
+          ?>
+				</div>
+				<div class="panel_area">
+					<div id="panel1" class="tab_panel">
+						<ul class="grid-row top_list_item">
+
+							<?php
+							//アイテム一覧
+
+							$cat_arr = array();
+							foreach($boxes as $box):
+							  extract($box['CatalogBox'],EXTR_PREFIX_ALL,'tbl');
+							  $cat_arr[$tbl_category_id][] = $box;
+							?>
+							<li class="col-3">
+								<?php if (isset($tbl_word1) && $tbl_word1 == 'Y'):?>
+								<span class="icon_sold"><img src="images/top_list_sold.png" alt="売却済み"></span>
+							<?php endif;?>
+								<?php if (isset($tbl_has_page) && $tbl_has_page == 'Y'):?>
+									<a href="list/view/<?php echo $tbl_id;?>">
+								<?php endif;?>
+									<div class="top_list_img">
+										<?php if (!empty($tbl_image1)):?>
+											<?php echo $this->element('media', array('var'=>array('id'=>$tbl_image1,'maxwidth'=>260,'maxheight'=>190,'alt'=>$tbl_image1_alt)));?>
+										<?php endif;?>
+									</div>
+									<div class="top_list_text">
+										<div><?php echo $tbl_title;?></div>
+										<div><?php echo $tbl_text1;?></div>
+										<div><?php echo $tbl_text4;?></div>
+										<div><?php echo $tbl_text6;?></div>
+										<?php if (isset($tbl_has_page) && $tbl_has_page == 'Y'):?>
+										<span><img src="images/top_list_arrow.png"></span>
+										<?php endif;?>
+									</div>
+								<?php if (isset($tbl_has_page) && $tbl_has_page == 'Y'):?>
+								</a>
+								<?php endif;?>
+							</li>
+							<?php
+							  //使った変数を初期化
+							  foreach($box['CatalogBox'] as $key=>$data){
+							    ${'tbl_'.$key} = null;
+							  }
+							?>
+							<?php
+              $tab_count++;
+              endforeach;?>
+
+						</ul>
+					</div>
+
+					<?php
+					$i=0;
+          $tab_count=2;
+					foreach($cat_ids as $cat_id):
+					?>
+					<div id="panel<?php echo $tab_count?>" class="tab_panel">
+						<ul class="grid-row top_list_item">
+							<?php
+							if (!empty($cat_arr[$cat_id])):
+							foreach($cat_arr[$cat_id] as $cat):
+								extract($cat['CatalogBox'],EXTR_PREFIX_ALL,'tbl');
+							?>
+							<li class="col-3">
+								<?php if (isset($tbl_word1) && $tbl_word1 == 'Y'):?>
+								<span class="icon_sold"><img src="images/top_list_sold.png" alt="売却済み"></span>
+							<?php endif;?>
+								<?php if (isset($tbl_has_page) && $tbl_has_page == 'Y'):?>
+									<a href="list/view/<?php echo $tbl_id;?>">
+								<?php endif;?>
+									<div class="top_list_img">
+										<?php if (!empty($tbl_image1)):?>
+											<?php echo $this->element('media', array('var'=>array('id'=>$tbl_image1,'maxwidth'=>260,'maxheight'=>190,'alt'=>$tbl_image1_alt)));?>
+										<?php endif;?>
+									</div>
+									<div class="top_list_text">
+										<div><?php echo $tbl_title;?></div>
+										<div><?php echo $tbl_text1;?></div>
+										<div><?php echo $tbl_text4;?></div>
+										<div><?php echo $tbl_text6;?></div>
+										<?php if (isset($tbl_has_page) && $tbl_has_page == 'Y'):?>
+										<span><img src="images/top_list_arrow.png"></span>
+										<?php endif;?>
+									</div>
+								<?php if (isset($tbl_has_page) && $tbl_has_page == 'Y'):?>
+								</a>
+								<?php endif;?>
+							</li>
+							<?php
+								//使った変数を初期化
+								foreach($box['CatalogBox'] as $key=>$data){
+									${'tbl_'.$key} = null;
+								}
+							?>
+							<?php
+							endforeach;
+							endif;
+							?>
+						</ul>
+					</div>
+					<?php
+          $tab_count++;
+          endforeach;?>
+
+				</div>
+			</div>
+
+		</div>
+	</section>
+</main>
+
+<footer class="footer">
+	<div class="container">
+		<div class="grid-row">
+			<div class="col-3">
+				<dl>
+					<dt><img src="images/footer_logo.png" width="184" height="32" alt="株式会社かじやま不動産"></dt>
+					<dd>〒468-0032<br>
+					名古屋市天白区山郷町13番地<br>
+					Tel.052-800-2103 / Fax.052-800-2107</dd>
+				</dl>
+			</div>
+			<div class="col-6">
+				<ul>
+					<li><a href="index.html"><i class="fas fa-angle-right"></i>ホーム</a></li>
+					<li><a href="list.html"><i class="fas fa-angle-right"></i>物件情報</a></li>
+					<li><a href="about.html"><i class="fas fa-angle-right"></i>かじやま不動産について</a></li>
+					<li><a href="company.html"><i class="fas fa-angle-right"></i>会社案内</a></li>
+					<li><a href="contact.html"><i class="fas fa-angle-right"></i>お問い合わせ</a></li>
+				</ul>
+			</div>
+			<div class="col-3 align-r"><p class="copyright">&copy;2018  株式会社かじやま不動産</p></div>
+		</div>
+	</div>
+</footer>
+
+<div id="pagetop"><a href="#top"><img src="images/pagetop.png" width="55" height="55" alt="ページトップ"></a></div>
+
+<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="js/pagetop.js"></script>
+<script src="js/tel.js"></script>
+</body>
+</html>

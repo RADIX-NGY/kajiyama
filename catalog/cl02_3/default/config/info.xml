@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0" date="2010-10-01">
+	<author name="イージーゲート" link="http://www.ezgate.co.jp" />
+	<title>CL02用アイテムボックステンプレート</title>
+	<description>
+	CL02デフォルトのアイテムボックステンプレートです。
+	</description>
+	<modified>
+	<!-- 納品後の修正履歴を記述してください。 -->
+	</modified>
+  <preview_settings>
+    <var name="親カテゴリ内一覧" type="parent" action="index" />
+    <var name="アイテム詳細" type="target" action="view" />
+<!-- SPがある場合、この↓コメントアウトを開放する -->
+<!--
+    <var name="親カテゴリ内一覧" app="sp" type="parent" action="index" />
+    <var name="アイテム詳細" app="sp" type="target" action="view" />
+-->
+  </preview_settings>
+
+  <!-- 管理画面の一覧変化と、管理画面・表画面の基本並び替えの変更（date1-desc,name-asc,title-asc）
+  <index_settings>
+    <orders>
+      <order>
+        <field>date1</field>
+        <direction>desc</direction>
+      </order>
+      <order>
+        <field>name</field>
+        <direction>asc</direction>
+      </order>
+      <order>
+        <field>title</field>
+        <direction>asc</direction>
+      </order>
+    </orders>
+  </index_settings>
+  -->
+
+  <!-- 管理画面の一覧の項目を定義したい場合（nameの後ろにtitle）
+  <index_settings>
+    <orders>
+      <order>
+        <field>name</field>
+      </order>
+      <order>
+        <field>title</field>
+      </order>
+    </orders>
+  </index_settings>
+  -->
+
+  <!--
+  limit値を定義したい場合、index_settingsの中にlimitタグを追加する。
+  controllerを編集しなくてもページングのlimit値を指定できる。
+  他のindex_settingsの内容と一緒に書ける。
+
+  <index_settings>
+    <limit>10</limit>
+  </index_settings>
+  -->
+
+	<fields>
+		<var name="name" type="text" use="1">
+			<title>管理用タイトル</title>
+			<attributes class="required" />
+			<description>※管理画面にて一覧表示されるタイトルになります。管理用タイトルは重複させることが出来ません。</description>
+		</var>
+		<var name="title" type="text" use="1">
+			<title>物件名</title>
+			<attributes class="copy-target" />
+			<description>※実際に画面へ表示される物件名になります。</description>
+		</var>
+		<var name="image1" type="image" use="1">
+			<title>メイン画像</title>
+			<attributes class="upload" />
+		</var>
+		<var name="page_title" type="text" use="1">
+			<title>ページタイトル</title>
+			<attributes class="copy-target" />
+			<description>※検索エンジンに知らせるカタログページの名前です。ブラウザのタブ部分にも表示されます。未入力にするとデフォルトの文字列が表示されるようになります。</description>
+		</var>
+		<var name="keywords" type="text" use="1">
+			<title>Keywords</title>
+			<attributes class="copy-target" />
+			<description>※検索エンジンに知らせるカタログページの関連キーワードです。カンマ（,）で区切って入力して下さい。未入力にするとデフォルトの文字列が表示されるようになります。</description>
+		</var>
+		<var name="description" type="text" use="1">
+			<title>Description</title>
+			<attributes class="copy-target" />
+			<description>※検索エンジンに知らせるカタログページの説明文です。未入力にすると設定されません。未入力にするとデフォルトの文字列が表示されるようになります。</description>
+		</var>
+		<var name="enable" type="select" use="1">
+			<title>公開設定</title>
+			<options>
+				<Y>公開</Y>
+				<N>非公開</N>
+				<T>公開期間指定</T>
+			</options>
+			<default>Y</default>
+      <sns>Y</sns>
+			<attributes />
+		</var>
+		<var name="start" type="date" use="1">
+			<title>公開開始日時</title>
+			<attributes class="datepicker required" />
+		</var>
+		<var name="end" type="date" use="1">
+			<title>公開終了日時</title>
+			<attributes class="datepicker required" />
+		</var>
+		<!--
+		<var name="date1" type="date" use="1">
+			<title>日付</title>
+			<attributes class="datepicker" />
+			<help>お知らせする日付を選択します。
+			日付は、表ページの日付に反映されます。</help>
+		</var>
+		<var name="new_mark" type="select" use="1">
+			<title>新着マーク</title>
+			<options>
+				<month>日付から一ヶ月間表示</month>
+				<two_weeks>日付から二週間表示</two_weeks>
+				<week>日付から一週間表示</week>
+				<N>表示しない</N>
+			</options>
+			<default>two_weeks</default>
+			<attributes />
+			<help>新着マークを表示する期間を選択してください。</help>
+		</var>
+	-->
+
+	<var name="word1" type="select" use="1">
+		<title>売却済みアイコン</title>
+		<options>
+			<Y>表示する</Y>
+			<N>表示しない</N>
+		</options>
+		<default>N</default>
+		<attributes />
+	</var>
+
+
+
+		<var name="has_page" type="select" use="1">
+			<title>詳細ページ</title>
+			<options>
+				<Y>詳細ページあり</Y>
+				<N>詳細ページなし</N>
+			</options>
+			<default>Y</default>
+      <sns>Y</sns>
+      <preview_target>Y</preview_target>
+			<attributes />
+			<help>詳細ページの有無を選択してください。</help>
+		</var>
+
+		<var name="on_top_page" type="select" use="1">
+			<title>TOPに表示する</title>
+			<options>
+				<Y>TOPに表示する</Y>
+				<N>TOPに表示しない</N>
+			</options>
+			<default>Y</default>
+			<attributes />
+		</var>
+
+
+
+
+		<var name="text1" type="textarea" use="1">
+			<title>価格</title>
+			<attributes cols="32" rows="1" />
+		</var>
+
+		<var name="text3" type="textarea" use="1">
+			<title>号室/階</title>
+			<attributes cols="32" rows="1" />
+		</var>
+		<var name="text4" type="textarea" use="1">
+			<title>間取</title>
+			<attributes cols="32" rows="1" />
+		</var>
+		<var name="text5" type="textarea" use="1">
+			<title>広さ</title>
+			<attributes cols="32" rows="1" />
+		</var>
+		<var name="text6" type="textarea" use="1">
+			<title>アクセス</title>
+			<attributes cols="32" rows="1" />
+		</var>
+		<!--var name="text7" type="textarea" use="1">
+			<title>敷金/礼金</title>
+			<attributes cols="32" rows="1" />
+		</var-->
+		<var name="text8" type="textarea" use="1">
+			<title>仲介手数料</title>
+			<attributes cols="32" rows="1" />
+		</var>
+		<var name="image2" type="image" use="1">
+			<title>間取り画像</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text9" type="textarea" use="1">
+			<title>備考</title>
+			<attributes cols="32" rows="1" />
+		</var>
+		<var name="text10" type="textarea" use="1">
+			<title>設備</title>
+			<attributes cols="32" rows="1" />
+		</var>
+
+		<var name="text11" type="textarea" use="1">
+			<title>住所</title>
+			<attributes cols="32" rows="10" />
+		</var>
+
+		<var name="image3" type="image" use="1">
+			<title>詳細画像1</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text13" type="textarea" use="1">
+			<title>詳細画像1説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image4" type="image" use="1">
+			<title>詳細画像2</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text14" type="textarea" use="1">
+			<title>詳細画像2説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image5" type="image" use="1">
+			<title>詳細画像3</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text15" type="textarea" use="1">
+			<title>詳細画像3説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image6" type="image" use="1">
+			<title>詳細画像4</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text16" type="textarea" use="1">
+			<title>詳細画像4説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image7" type="image" use="1">
+			<title>詳細画像5</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text17" type="textarea" use="1">
+			<title>詳細画像5説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+
+		<var name="image8" type="image" use="1">
+			<title>詳細画像6</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text18" type="textarea" use="1">
+			<title>詳細画像6説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image9" type="image" use="1">
+			<title>詳細画像7</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text19" type="textarea" use="1">
+			<title>詳細画像7説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image10" type="image" use="1">
+			<title>詳細画像8</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text20" type="textarea" use="1">
+			<title>詳細画像8説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image11" type="image" use="1">
+			<title>詳細画像9</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text21" type="textarea" use="1">
+			<title>詳細画像9説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image12" type="image" use="1">
+			<title>詳細画像10</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text22" type="textarea" use="1">
+			<title>詳細画像10説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image13" type="image" use="1">
+			<title>詳細画像11</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text23" type="textarea" use="1">
+			<title>詳細画像11説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image14" type="image" use="1">
+			<title>詳細画像12</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text24" type="textarea" use="1">
+			<title>詳細画像12説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image15" type="image" use="1">
+			<title>詳細画像13</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text25" type="textarea" use="1">
+			<title>詳細画像13説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image16" type="image" use="1">
+			<title>詳細画像14</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text26" type="textarea" use="1">
+			<title>詳細画像14説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image17" type="image" use="1">
+			<title>詳細画像15</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text27" type="textarea" use="1">
+			<title>詳細画像15説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image18" type="image" use="1">
+			<title>詳細画像16</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text28" type="textarea" use="1">
+			<title>詳細画像16説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image19" type="image" use="1">
+			<title>詳細画像17</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text29" type="textarea" use="1">
+			<title>詳細画像17説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image20" type="image" use="1">
+			<title>詳細画像18</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text30" type="textarea" use="1">
+			<title>詳細画像18説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image21" type="image" use="1">
+			<title>詳細画像19</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text31" type="textarea" use="1">
+			<title>詳細画像19説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="image22" type="image" use="1">
+			<title>詳細画像20</title>
+			<attributes class="upload" />
+		</var>
+		<var name="text32" type="textarea" use="1">
+			<title>詳細画像20説明</title>
+			<attributes cols="32" rows="10" />
+		</var>
+
+		<var name="html1" type="tinymcearea" use="1">
+			<title>紹介コメント</title>
+			<attributes class="tinymcearea" cols="32" rows="5" />
+		</var>
+
+
+		<var name="html2" type="tinymcearea" use="1">
+			<title>Google Map URL</title>
+			<attributes class="tinymcearea" cols="32" rows="5" />
+		</var>
+
+
+<!--
+    <var name="sns" type="sns" use="1">
+			<title>SNS投稿</title>
+      <page_controller>catalog</page_controller>
+      <fb_message>WEBページを更新しました</fb_message>
+      <fb_title>page_title</fb_title>
+      <fb_image>image1</fb_image>
+      <fb_description>description</fb_description>
+      <fb_content>html1</fb_content>
+      <twitter_message>WEBページを更新しました</twitter_message>
+      <twitter_title>page_title</twitter_title>
+			<attributes />
+    </var>
+-->
+
+
+	</fields>
+</layout>

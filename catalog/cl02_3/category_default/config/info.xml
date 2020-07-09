@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0" date="2010-10-01">
+	<author name="イージーゲート" link="http://www.ezgate.co.jp" />
+	<title>CL02用カテゴリテンプレート</title>
+	<description>
+	CL02デフォルトのカテゴリテンプレートです。
+	</description>
+	<setting>
+	<type>ct</type>
+	<depth>1</depth>
+	<operation>left</operation>
+	</setting>
+	<modified>
+	<!-- 納品後の修正履歴を記述してください。 -->
+	</modified>
+  <preview_settings>
+    <var name="カテゴリ内一覧" type="target" action="index" />
+<!-- SPがある場合、この↓コメントアウトを開放する -->
+<!--
+    <var name="カテゴリ内一覧" app="sp" type="target" action="index" />
+-->
+  </preview_settings>
+	<fields>
+		<var name="name" type="text" use="1">
+			<title>管理用タイトル</title>
+			<attributes class="required" />
+			<description>※管理画面にて一覧表示されるタイトルになります。管理用タイトルは重複させることが出来ません。</description>
+		</var>
+		<var name="title" type="text" use="1">
+			<title>タイトル</title>
+			<attributes class="copy-target" />
+			<description>※実際に画面へ表示されるタイトルになります。</description>
+		</var>
+		<var name="page_title" type="text" use="1">
+			<title>ページタイトル</title>
+			<attributes class="copy-target" />
+			<description>※検索エンジンに知らせるカタログページの名前です。ブラウザのタブ部分にも表示されます。未入力にするとデフォルトの文字列が表示されるようになります。</description>
+		</var>
+		<var name="keywords" type="text" use="1">
+			<title>Keywords</title>
+			<attributes class="copy-target" />
+			<description>※検索エンジンに知らせるカタログページの関連キーワードです。カンマ（,）で区切って入力して下さい。未入力にするとデフォルトの文字列が表示されるようになります。</description>
+		</var>
+		<var name="description" type="text" use="1">
+			<title>Description</title>
+			<attributes class="copy-target" />
+			<description>※検索エンジンに知らせるカタログページの説明文です。未入力にすると設定されません。未入力にするとデフォルトの文字列が表示されるようになります。</description>
+		</var>
+<!--
+		<var name="permalink" type="text" use="1">
+			<title>ページURL</title>
+		</var>
+-->
+		<var name="enable" type="select" use="1">
+			<title>公開設定</title>
+			<options>
+				<Y>公開</Y>
+				<N>非公開</N>
+				<T>公開期間指定</T>
+			</options>
+			<default>Y</default>
+      <sns>Y</sns>
+			<attributes />
+		</var>
+		<var name="start" type="date" use="1">
+			<title>公開開始日時</title>
+			<attributes class="datepicker required" />
+		</var>
+		<var name="end" type="date" use="1">
+			<title>公開終了日時</title>
+			<attributes class="datepicker required" />
+		</var>
+
+<!--
+    <var name="sns" type="sns" use="1">
+			<title>SNS投稿</title>
+      <page_controller>catalog</page_controller>
+      <fb_message>WEBページを更新しました</fb_message>
+      <fb_title>page_title</fb_title>
+      <fb_image>image1</fb_image>
+      <fb_description>description</fb_description>
+      <fb_content>html1</fb_content>
+      <twitter_message>WEBページを更新しました</twitter_message>
+      <twitter_title>page_title</twitter_title>
+			<attributes />
+    </var>
+-->
+		<!--
+		<var name="html1" type="tinymcearea" use="1">
+			<title>カテゴリ説明</title>
+			<attributes class="tinymcearea" cols="32" rows="10" />
+		</var>
+		<var name="image1" type="image" use="1">
+			<title>カテゴリ画像</title>
+			<attributes class="upload" />
+		</var>
+
+		<var name="word5" type="text" use="1">
+			<title>ワード項目5</title>
+			<attributes />
+			<description>※説明文を表示します。</description>
+		</var>
+		<var name="word6" type="select" use="1">
+			<title>選択項目1</title>
+			<options>
+				<A><value>選択項目1-1</value></A>
+				<B><value>選択項目1-2</value></B>
+				<C><value>選択項目1-3</value></C>
+				<D><value>選択項目1-4</value></D>
+			</options>
+			<default>選択項目1-1</default>
+			<help></help>
+			<attributes />
+		</var>
+		<var name="word7" type="select" use="1">
+			<title>選択項目2</title>
+			<options>
+				<A>
+					<name>選択項目2-1</name>
+					<value>選択項目2-1表示名</value>
+				</A>
+				<B>
+					<name>選択項目2-2</name>
+					<value>選択項目2-2表示名</value>
+				</B>
+				<C>
+					<name>選択項目2-3</name>
+					<value>選択項目2-3表示名</value>
+				</C>
+				<D>
+					<name>選択項目2-4</name>
+					<value>選択項目2-4表示名</value>
+				</D>
+			</options>
+			<default>選択項目2-1</default>
+			<help></help>
+			<attributes />
+		</var>
+    -->
+                                <!--黒に映える色-->
+<!--		<var name="word8" type="color" use="1">
+			<title>タイトルカラー</title>
+			<color>#000</color>
+			<options>
+				<A>#EEEEEE</A>
+				<B>#FFCC99</B>
+				<C>#ffe1db</C>
+				<D>#f8efa7</D>
+				<E>#beecc4</E>
+				<F>#339933</F>
+				<G>#d7e3ff</G>
+				<H>#39b2cc</H>
+				<I>#00adf2</I>
+				<J>#EE88EE</J>
+			</options>
+			<help></help>
+		</var>-->
+                                <!--白に映える色-->
+<!--		<var name="word9" type="color" use="1">
+			<title>タイトルカラー</title>
+			<color>#fff</color>
+			<options>
+				<A>#CC6699</A>
+				<B>#CC9966</B>
+				<C>#6699CC</C>
+				<D>#669966</D>
+				<E>#666699</E>
+				<F>#F1963D</F>
+				<G>#A45B99</G>
+				<H>#D85C3E</H>
+				<I>#4267B2</I>
+				<J>#1895E0</J>
+				<K>#BE0000</K>
+				<L>#FEBF28</L>
+				<M>#661F1E</M>
+				<N>#cc66cc</N>
+				<O>#ff5b9b</O>
+				<P>#66CC99</P>
+				<Q>#50C900</Q>
+				<R>#9999cc</R>
+			</options>
+			<help></help>
+		</var>-->
+    <!--
+    アイテム選択
+
+    あるカテゴリに属するアイテムを選択項目として利用する機能
+    カタログのconfiguration_idとテンプレート名から合致する全てのアイテムをリスト取得するパターン
+    -->
+    <!--
+		<var name="word8" type="select_from_catalog_box" use="1">
+			<title>アイテム選択</title>
+			<cid>3</cid>
+			<template>tokushuu</template>
+			<help></help>
+			<attributes />
+		</var>
+    -->
+    <!--
+    アイテム選択
+
+    あるカテゴリに属するアイテムを選択項目として利用する機能
+    カテゴリ名から取得するパターン
+    カテゴリを消してしまうとエラーになる(ユーザー操作でエラーになるパターンが発生する)のであまり使いたくない
+    -->
+    <!--
+		<var name="word9" type="select_from_catalog_box" use="1">
+			<title>アイテム選択2</title>
+			<category_name>tokushuu</category_name>
+			<help></help>
+			<attributes />
+		</var>
+
+
+		<var name="number1" type="text" use="1">
+			<title>数値項目1</title>
+			<attributes size="10" style = "width:100px"/>
+		</var>
+		<var name="text1" type="textarea" use="1">
+			<title>テキストエリア項目1</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="html1" type="tinymcearea" use="1">
+			<title>HTMLエリア</title>
+			<attributes class="tinymcearea" cols="32" rows="10" />
+		</var>
+		<var name="word4" type="radio" use="1">
+			<title>ラジオボタン</title>
+			<options>
+				<A>ラジオボタン1</A>
+				<B>ラジオボタン2</B>
+				<C>ラジオボタン3</C>
+				<D>ラジオボタン4</D>
+			</options>
+			<help></help>
+			<attributes />
+		</var>
+		<var name="check1" type="checkbox" use="1">
+			<title>チェックボックス</title>
+			<options>
+				<A>チェックボックス1</A>
+				<B>チェックボックス2</B>
+				<C>チェックボックス3</C>
+				<D>チェックボックス4</D>
+				<E>チェックボックス5</E>
+				<F>チェックボックス6</F>
+				<G>チェックボックス7</G>
+				<H>チェックボックス8</H>
+			</options>
+			<help></help>
+		</var>
+		-->
+    <!--
+    ジオコーダ
+
+    直接テーブルに保存されない、補助入力機能
+    取得したデータを入力するフィールドとして、住所、緯度、経度に対応するものを指定する。
+    特に、緯度と経度はfloatかdoubleになっている必要がある。
+    利用する場合はかならずこの3つを入力するフィールドを指定しなければならない。
+    ジオコーダより上に定義しても下に定義してもいいので、必ず３つ用意してください。
+
+    ４つ目のフィールドとして、「実際にGoogleMAPで表示する際のURL」を表示するフィールド「url」も指定できる。
+    このフィールドは省略可能なので、必要ない場合は適宜省略してください。
+
+    設定すると、
+    ・検索ワードの入力ボックス
+    ・ワードに合致する住所・緯度経度のセットの選択ボックス
+    ・設定した４つのフィールドへのデータ反映ボタン
+    などを備えたパーツが、カテゴリ／アイテムの追加・編集画面に出現する。
+
+    ほぼほぼ不動産屋さん専用の機能だと思われます
+    -->
+    <!--
+		<var name="geocoder" type="geocoder" use="1">
+			<title>住所と緯度経度検索</title>
+			<address>text20</address>
+			<latitude>latitude</latitude>
+			<longitude>longitude</longitude>
+			<url>text21</url>
+      <apikey></apikey>
+		</var>
+		<var name="text20" type="textarea" use="1">
+			<title>住所</title>
+			<attributes cols="32" rows="10" />
+		</var>
+		<var name="latitude" type="text" use="1">
+			<title>緯度</title>
+			<attributes size="10" style = "width:200px"/>
+		</var>
+		<var name="longitude" type="text" use="1">
+			<title>経度</title>
+			<attributes size="10" style = "width:200px"/>
+		</var>
+		<var name="text21" type="text" use="1">
+			<title>GoogleMAP URL</title>
+			<attributes />
+		</var>
+    -->
+
+
+		<!--
+    datetime fromとtoを表現したい時
+    attributesのstepは何分刻みでダイアログを出すかの指定です
+    -->
+		<!--
+		<var name="datetime1" type="datetimepicker" use="1">
+			<title>イベント開始時間</title>
+			<attributes step="10" to="datetime2" />
+<help>日付時刻選択をクリックすると表示されるカレンダーから日付と時刻を選択して下さい。
+
+Date Time Picker
+Copyright (c) 2013 http://xdsoft.net
+Released under the MIT license
+&lt;a href="https://github.com/xdan/datetimepicker/blob/master/MIT-LICENSE.txt"&gt;https://github.com/xdan/datetimepicker/blob/master/MIT-LICENSE.txt&lt;/a&gt;</help>
+		</var>
+		<var name="datetime2" type="datetimepicker" use="1">
+			<title>イベント終了時間</title>
+			<attributes step="10" from="datetime1" />
+<help>日付時刻選択をクリックすると表示されるカレンダーから日付と時刻を選択して下さい。
+
+Date Time Picker
+Copyright (c) 2013 http://xdsoft.net
+Released under the MIT license
+&lt;a href="https://github.com/xdan/datetimepicker/blob/master/MIT-LICENSE.txt"&gt;https://github.com/xdan/datetimepicker/blob/master/MIT-LICENSE.txt&lt;/a&gt;</help>
+		</var>
+    -->
+
+		<!--
+		datetime 単項目で利用したい時
+		attributesのstepは何分刻みでダイアログを出すかの指定です
+    -->
+		<!--
+		<var name="datetime3" type="datetimepicker" use="1">
+			<title>時刻選択</title>
+			<attributes step="10" />
+<help>日付時刻選択をクリックすると表示されるカレンダーから日付と時刻を選択して下さい。
+
+Date Time Picker
+Copyright (c) 2013 http://xdsoft.net
+Released under the MIT license
+&lt;a href="https://github.com/xdan/datetimepicker/blob/master/MIT-LICENSE.txt"&gt;https://github.com/xdan/datetimepicker/blob/master/MIT-LICENSE.txt&lt;/a&gt;</help>
+		</var>
+    -->
+
+
+	</fields>
+</layout>
