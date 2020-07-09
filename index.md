@@ -29,7 +29,7 @@
 				</div>
 				<div class="col-5">
 					<ul class="header_tel">
-						<li><span data-action="call" data-tel="052-800-2103">052-800-2103</span></li>
+						<li><span data-action="call" data-tel="052-800-2103">000-000-0000</span></li>
 						<li>営業時間 10:00~19:00<br>
 							定休日:水曜日</li>
 					</ul>
